@@ -1,7 +1,7 @@
 # Algorithm-Study
 
-Algorithm Study with C++
-------------------------
+Algorithm Study with JAVA & C++ 
+-------------------------------
 
 ### 커밋 내용
 
