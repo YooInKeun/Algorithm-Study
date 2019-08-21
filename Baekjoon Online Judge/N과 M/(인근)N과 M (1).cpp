@@ -64,30 +64,45 @@
 4 3 2 1
 */
 
+// 백트래킹 문제
+
 #include <iostream>
+#pragma warning(disable:4996)
+#define MAX 8
 
 using namespace std;
 
+int N, M, cnt; // cnt: 방문한 원소의 개수
+int num[MAX]; // M개의 숫자를 저장할 배열
+bool visited[MAX]; // 배열의 원소 방문 여부(선언하면 자동으로 false로 초기화)
+
+void func(int cnt);
+
 int main() {
 
-	int num[8];
-	int n, m;
-	int pos=1;
-
-	cin >> n;
-	cin >> m;
-
-	for (int i = 0; i < n; i++) {
-		num[i] = i + 1;
-	}
-
-	for (int i = 1; i <= n; i++) {
-		for (int j = 1; j <= m; j++) {
-			if(j)
-			cout << num[j] << " ";
-		}
-		cout << endl;
-	}
+	scanf("%d %d",&N, &M); // cout, cin 사용 시 시간 초과 -> printf, scanf로 변경
+	func(0); // 방문한 원소가 0개일 때부터 시작
 
 	return 0;
+}
+
+void func(int cnt) {
+
+	if (cnt == M) { // 방문한 원소의 개수가 M값(= 출력해야 하는 숫자 개수)과 같다면
+		for (int i = 0; i < M; i++) {
+			printf("%d ", num[i]); // 방문한 원소들을 모두 출력
+		}
+		printf("\n");
+		return; // 그리고 끝내기
+	}
+
+	for (int i = 0; i < N; i++) {
+		if (!visited[i]) { // 방문하지 않은 원소라면
+
+			visited[i] = true; // 방문한다
+			num[cnt] = i+1; // index값이 cnt인 곳에 (i+1)을 할당
+			func(cnt + 1); // 방문한 원소가 (cnt+1)개로 증가(Recursive) 
+			visited[i] = false; // 출력을 다 했으면, 방문한 원소 false로 변경
+		}
+	}
 }
