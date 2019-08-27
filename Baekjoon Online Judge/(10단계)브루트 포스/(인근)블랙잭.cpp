@@ -48,7 +48,7 @@ int main() {
 		for (int j = i + 1; j < N - 1; j++) {
 			for (int k = j + 1; k < N; k++) {
 
-				sum = arr[i] + arr[j] + arr[k];
+				sum = arr[i] + arr[j] + arr[k]; // sum 저장
 				if (sum <= M && sum > tmp) { // 합계가 M을 넘지 않고, 이전 값보다 크다면
 					sum = arr[i] + arr[j] + arr[k]; // sum 갱신
 					tmp = sum; // sum 값 임시 저장
