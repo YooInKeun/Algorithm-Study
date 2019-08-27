@@ -49,12 +49,10 @@ for i in range(0, N-7):
     for j in range(0, M-7):
         temp_result = 0
         for x in range(0, 8):
-            for y in range(0, 4):
-                if x == 0 and x == y :
-                    continue
-                if (x + y*2+1) % 2 == 1 and board[i+x][j+y*2+1] == board[i][j]:
+            for y in range(0, 8):
+                if (x + y) % 2 == 1 and board[i+x][j+y] == board[i][j]:
                     temp_result += 1
-                if (x + y*2) % 2 == 0 and board[i+x][j+y*2] != board[i][j]:
+                elif (x + y) % 2 == 0 and board[i+x][j+y] != board[i][j]:
                     temp_result += 1
         if temp_result > 32:
             temp_result = 64 - temp_result
