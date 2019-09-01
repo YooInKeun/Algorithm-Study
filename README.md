@@ -1,7 +1,7 @@
 # Algorithm-Study
 
-Algorithm Study with JAVA & C++ & Python
--------------------------------
+Algorithm Study at CAU
+----------------------
 
 ### 커밋 내용
 
