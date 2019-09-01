@@ -1,6 +1,6 @@
 # Algorithm-Study
 
-Algorithm Study with JAVA & C++ 
+Algorithm Study with JAVA & C++ & Python
 -------------------------------
 
 ### 커밋 내용
