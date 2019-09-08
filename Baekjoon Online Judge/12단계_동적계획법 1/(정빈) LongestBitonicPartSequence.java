@@ -23,45 +23,56 @@ import java.util.Scanner;
 
  */
 public class LongestBitonicPartSequence {
-		static int[][] sequence;
-		static int answer = 0;
+	static int[] sequence;
+	static int[] up;
+	static int[] down;
+	static int answer = 0;
+
 	public static void main(String[] args) {
 		Scanner bf = new Scanner(System.in);
 		int num = bf.nextInt();
-		sequence = new int[num][3];
-		
-		for (int i = 0; i < num; i++) {
-			sequence[i][0] = bf.nextInt(); 
-		}
-		
-		for (int i = 0; i < num; i++) {
-			int temp=0;
-			for(int j=0; j<num; j++) {
-				int up =sequence[i][0];
-				int down = sequence[i][0];
-				if(i>j) {
-					//올라갈때
-					if(up>sequence[j][0]) {
-						up = sequence[j][0];
-						temp++;
-					}
-				}
-				else {
-					//내려갈때
-					if(sequence[j][0]>down)
-						down=sequence[j][0];
-						temp++;
-				}
-			}
-			if(temp>answer) {
-				answer=temp;
-				System.out.println(i);
-			}
-		}
-		
-		System.out.println(answer+1);
+		sequence = new int[num];
+		up = new int[num];
+		down = new int[num];
 
+		// 수 채워넣기
+		for (int i = 0; i < num; i++) {
+			sequence[i] = bf.nextInt();
+		}
 		
+		// 올라갈때
+		for (int i = 0; i < num; i++) {
+			up[i] = 1;
+			for (int j = 0; j < i; j++) {
+				if(sequence[j]<sequence[i] && up[i]<up[j]+1) {
+					up[i] = up[j] + 1;
+				}
+			}
+		}
+		//내려갈때
+		for (int i = num-1; i > 0; i--) {
+			down[i] = 1;
+			for (int j = num-1; j > i; j--) {
+				if(sequence[j]<sequence[i] && down[i]<down[j]+1) {
+					down[i] = down[j] + 1;
+				}
+			}
+		}
+		//확인
+		for (int i = 0; i < num; i++) {
+//			System.out.print(up[i]+" ");
+			System.out.print(down[i]+" ");
+			
+		}
+		//최대값 구하기
+		for (int i = 0; i < num; i++) {
+			if((up[i]+down[i])>answer) {
+				answer = up[i]+down[i];
+			}
+		}
+
+		System.out.println(answer - 1);
+
 	}
 
 }
