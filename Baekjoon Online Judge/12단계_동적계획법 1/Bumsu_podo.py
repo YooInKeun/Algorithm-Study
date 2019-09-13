@@ -31,25 +31,11 @@ N = int(input())
 if N == 1:
     print(int(input()))
 else:
-    numbers = [int(input()), int(input())]
-    wine_amount = [numbers[0], numbers[1], numbers[0] + numbers[1]]
+    numbers = [0, int(input()), int(input())]
+    wine_amount = [0, numbers[1], numbers[1] + numbers[2]]
 
-    for i in range(2, N):
+    for i in range(3, N + 1):
         numbers.append(int(input()))
-        temp = [wine_amount[2], wine_amount[0] + numbers[i], wine_amount[1] + numbers[i]]
+        wine_amount.append(max(wine_amount[i-1], max(wine_amount[i-2] + numbers[i], wine_amount[i-3] + numbers[i-1] + numbers[i])))
 
-        if wine_amount[2] >= temp[2]:
-            wine_amount[2] = 0
-        else:
-            wine_amount[2] = temp[2]
-
-        if wine_amount[1] >= temp[1]:
-            save_1 = wine_amount[1]
-            wine_amount[1] = 0
-        else:
-            save_1 = 0
-            wine_amount[1] = temp[1]
-
-        wine_amount[0] = max(wine_amount[0], temp[0], save_1)
-
-    print(max(wine_amount[0], wine_amount[1], wine_amount[2]))
+    print(wine_amount[N])
