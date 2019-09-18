@@ -29,13 +29,13 @@
 '''
 
 N = int(input())
-meetings = [[tuple(map(int, input().split(' '))), 1] for _ in range(N)]
+meetings = [tuple(map(int, input().split(' '))) for _ in range(N)]
 meetings.sort(reverse=True)
 count = 1
 
-end_time = meetings[0][0][0]
+end_time = meetings[0][0]
 for i in range(1, N):
-    if meetings[i][0][1] <= end_time:
-        end_time = meetings[i][0][0]
+    if meetings[i][1] <= end_time:
+        end_time = meetings[i][0]
         count += 1
 print(count)
