@@ -39,14 +39,17 @@ public class Rope {
 		for (int i = 0; i < num; i++) {
 			rope[i] = bf.nextInt();
 		}
+		
+		//로프 오름차순 정렬
 		Arrays.sort(rope);
 		
-		
-		
+		//자신보다 뒤에있는건 다 길기 때문에 곱으로 계산가능
 		for (int i = 0; i < num; i++) {
 			if (rope[i]*(num-i) > answer)
 				answer = rope[i]*(num-i);
 		}
+		
+		//처음에 로프가 다같이 붙어있다고 생각해서
 //		for (int i = 0; i < num; i++) {
 //			for (int j = i; j < num; j++) {
 //				if (rope[i][0] > rope[j][0]) {
