@@ -33,11 +33,11 @@ using namespace std;
 
 int main() {
 
-	char equation[MAX], buffer[MAX], myOperator[MAX];
-	char* str_num[MAX];
-	char* numToken;
+	char equation[MAX], buffer[MAX], myOperator[MAX]; // equation: 입력 식, buffer: 입력 식 copy본, myOperator: 식에 있는 연산자만 저장한 배열
+	char* str_num[MAX]; 
+	char* numToken; // equation 토큰화
 	int numIdx = 0, operatorIdx = 0, answer = 0;
-	int num[MAX], numSum[MAX];
+	int num[MAX], numSum[MAX]; // num: 식에서 숫자만 저장한 배열, numSum: 더하기 연산을 먼저 하고 난 후 숫자 저장한 배열
 
 	scanf("%s", equation);
 	strcpy(buffer, equation);
@@ -45,13 +45,13 @@ int main() {
 	numToken = strtok(equation, "+-");
 
 	while (numToken != NULL) {
-		str_num[numIdx] = numToken;
+		str_num[numIdx] = numToken; // 숫자(char) 추출 후 저장
 		numIdx++;
 		numToken = strtok(NULL, "+-");
 	}
 
 	for (int i = 0; buffer[i] != NULL; i++) {
-		if (buffer[i] == '+' || buffer[i] == '-') {
+		if (buffer[i] == '+' || buffer[i] == '-') { // 연산자 추출 후, 저장
 
 			myOperator[operatorIdx] = buffer[i];
 			operatorIdx++;
@@ -59,29 +59,29 @@ int main() {
 	}
 
 	for (int i = 0; i < numIdx; i++)
-		num[i] = atoi(str_num[i]);
+		num[i] = atoi(str_num[i]); // 숫자 char -> int 형 변환
 
 	numSum[0] = num[0];
 
 	for (int i = 0; i < numIdx; i++) {
-		if (myOperator[i] == '-')
-			numSum[i + 1] = num[i + 1];
-		else if (myOperator[i] == '+') {
-			numSum[i + 1] = numSum[i] + num[i + 1];
-			numSum[i] = NULL;
+		if (myOperator[i] == '-') // 연산자가 - 면
+			numSum[i + 1] = num[i + 1]; // 그대로 두고
+		else if (myOperator[i] == '+') { // 연산자가 + 면
+			numSum[i + 1] = numSum[i] + num[i + 1]; // 더하기 연산 진행
+			numSum[i] = NULL; // 더하기 연산 진행 했으므로, 필요없는 숫자는 NULL 처리
 		}
 	}
 
-	bool firstFlag = true;
+	bool firstFlag = true; // 첫 번째 numSum 값 저장하기 위한 flag
 	for (int i = 0; i < numIdx; i++) {
 
 		if (numSum[i] != NULL && firstFlag == true) {
 
-			answer = numSum[i];
+			answer = numSum[i]; // answer numSum 첫 번째 값으로 초기화
 			firstFlag = false;
 		}
 		else if(numSum[i] !=NULL && firstFlag == false) {
-			answer -= numSum[i];
+			answer -= numSum[i]; // numSum에 있는 값 모두 빼기
 		}
 	}
 
