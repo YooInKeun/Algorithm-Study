@@ -56,44 +56,45 @@ int main() {
 
 	getline(cin, ps);
 
-	while (ps != ".") {
+	while (ps != ".") { // "." 입력시 종료
 
-		for (int i = 0; ps[i] != '.'; i++) {
+		for (int i = 0; i < ps.length(); i++) {
 
-			if (s.empty() && (ps[i] == '(' || ps[i] == ')' || ps[i] == '[' || ps[i] == ']')) {
-				s.push(ps[i]);
+			if (s.empty() && (ps[i] == '(' || ps[i] == ')' || ps[i] == '[' || ps[i] == ']')) { // stack이 비어있고, 괄호가 입력되면
+				s.push(ps[i]); // push
 			}
-			else if(!s.empty()) {
-				if (s.top() == '(') {
-					if (ps[i] == ')') {
-						s.pop();
+			else if (!s.empty()) { // 스택에 괄호가 존재하고
+				if (s.top() == '(') { // 여는 소괄호라면
+					if (ps[i] == ')') { // 여는 대괄호가 입력되었을 때
+						s.pop(); // pop
 					}
-					else if (ps[i] == '(' || ps[i] == '[' || ps[i] == ']') {
-						s.push(ps[i]);
-					}
-				}
-				else if (s.top() == ')') {
-					s.push(ps[i]);
-				}
-				else if (s.top() == '[') {
-					if (ps[i] == ']') {
-						s.pop();
-					}
-					else if (ps[i] == '[' || ps[i] == '(' || ps[i] == ')') {
-						s.push(ps[i]);
+					else if (ps[i] == '(' || ps[i] == '[' || ps[i] == ']') { // 여는 대괄호가 아닌 다른 괄호들일 때
+						s.push(ps[i]); // push
 					}
 				}
-				else if (s.top() == ']') {
-					s.push(ps[i]);
+				else if (s.top() == ')') { // 스택에 닫는 소괄호가 있으면
+					s.push(ps[i]); // push
+				}
+				else if (s.top() == '[') {  // 스택에 여는 대괄호가 있고
+					if (ps[i] == ']') { // 닫는 대괄호가 입력되었을 때
+						s.pop(); // pop
+					}
+					else if (ps[i] == '[' || ps[i] == '(' || ps[i] == ')') { // 닫는 대괄호가 아닌 다른 괄호일 때
+						s.push(ps[i]); // push
+					}
+				}
+				else if (s.top() == ']') { // 스택에 닫는 대괄호가 있으면
+					s.push(ps[i]); // push
 				}
 			}
 		}
 
-		if (s.empty()) {
-			printf("YES\n");
+		// 최종 스택이
+		if (s.empty()) { // 비었다면
+			printf("yes\n");
 		}
-		else {
-			printf("NO\n");
+		else if (!s.empty()) { // 비지 않았다면
+			printf("no\n");
 
 			while (!s.empty()) { // 스택 초기화 해주기 위해 empty될 때 까지 반복문
 				s.pop();
@@ -105,3 +106,11 @@ int main() {
 
 	return 0;
 }
+
+/*
+(실수 기록)
+
+정답을 출력할 때, "yes", "no"를 출력해야 하는데
+"YES", "NO" 대문자로 출력해서 계속 틀렸음.
+
+*/
