@@ -39,7 +39,7 @@ class Solution {
             if (sum == this.target) {
                 this.answer++;
             }
-            return ;
+            return;
         }
         
         for (int i = start; i < visited.length; i++) {
