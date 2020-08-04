@@ -21,7 +21,7 @@ class Solution {
             if (participantMap.get(key) == 1) {
                 answer = key;
             }
-        }
+        } 
         return answer;
     }
 }
