@@ -1,1 +1,1 @@
-SELECT count(distinct(ANIMAL_INS.NAME)) FROM ANIMAL_INS WHERE ANIMAL_INS.NAME IS NOT null;
+SELECT count(distinct(animal_ins.name)) FROM animal_ins WHERE animal_ins.name IS NOT null;
