@@ -36,17 +36,18 @@ class Solution {
         return getValueOfPosition(new int[]{m - 1, n - 1}) % 1000000007;
     }
 
-    public static int getValueOfPosition(int[] position) {
+        public static int getValueOfPosition(int[] position) {
         for (int i = 1; i <= position[0]; i++) {
             for (int j = 1; j <= position[1]; j++) {
                 if (graph[i][j] == -1) {
-                    graph[i][j] = graph[i - 1][j] + graph[i][j - 1];
+                    graph[i][j] = graph[i - 1][j] % 1000000007 + graph[i][j - 1] % 1000000007;
                 }
             }
         }
         return graph[position[0]][position[1]];
     }
     
+//     재귀로 풀기
 //     public static int getValueOfPosition(int[] position) {
 //         if (graph[position[0]][position[1] - 1] == -1) {
 //             graph[position[0]][position[1] - 1] = getValueOfPosition(new int[]{position[0], position[1] - 1});
