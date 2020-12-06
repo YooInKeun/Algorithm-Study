@@ -17,6 +17,10 @@ class Solution {
                 }
             }
         }
-        return 0;
+        
+        if (num == 0) {
+            return 0;
+        } 
+        return citations.length;
     }
 }
