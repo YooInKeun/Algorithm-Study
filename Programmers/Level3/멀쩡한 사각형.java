@@ -3,7 +3,7 @@ class Solution {
         int gcd = getGreatestCommonDivisor(w, h);
         int cutSquareCount = (w / gcd) + (h / gcd) - 1;
         int totalCutSquareCount = cutSquareCount * gcd;
-        long answer = w * h - totalCutSquareCount;
+        long answer = (long) w * h - totalCutSquareCount;
         return answer;
     }
     
